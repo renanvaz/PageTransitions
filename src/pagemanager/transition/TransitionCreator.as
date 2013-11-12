@@ -1,10 +1,4 @@
 ﻿package pagemanager.transition {
-    import com.greensock.TweenMax;
-    import com.greensock.TweenNano;
-    import com.greensock.easing.*;
-
-    import flash.display.Sprite;
-    import flash.display.DisplayObjectContainer;
 
     public class TransitionCreator {
         private static var index:int    = 0;

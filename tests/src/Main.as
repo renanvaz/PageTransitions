@@ -7,6 +7,7 @@ package
 	import flash.display.StageScaleMode;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
+	import pagemanager.PageManager;
 	
 	/**
 	 * ...
@@ -23,6 +24,8 @@ package
 			
 			// touch or gesture?
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
+			
+			PageManager.initTransitions();
 			
 			// entry point
 			

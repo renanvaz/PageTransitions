@@ -2,6 +2,11 @@ package pagemanager {
 
     import starling.core.Starling;
     import starling.display.Sprite;
+	
+	import pagemanager.transition.Transition;
+	import pagemanager.transition.TransitionCreator;
+	
+	import com.greensock.easing.*;
 
     public class PageManager {
         public static var main:Sprite;
@@ -16,7 +21,7 @@ package pagemanager {
             PageManager.main.addChild(page);
         }
 
-        public static function get (name:String):PageBase {
+        public static function get (name:String):Sprite {
             return PageManager._pages[name];
         }
 
@@ -37,7 +42,7 @@ package pagemanager {
             }
         }
 
-        public function initTransitions () {
+        public static function initTransitions () {
             // To
             TransitionCreator
                 .make('toLeft')

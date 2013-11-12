@@ -3,7 +3,7 @@
     import com.greensock.TimelineLite;
     import com.greensock.easing.*;
 
-	import flash.display.Sprite;
+	import starling.display.Sprite;
 
     public class Transition {
         public static var methods:Object = {
