@@ -7,35 +7,25 @@ package
 	import flash.display.StageScaleMode;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
-	import pagemanager.PageManager;
 	
-	/**
-	 * ...
-	 * @author Renan Vaz
-	 */
+	import starling.core.Starling;
+
+	[SWF(width="640", height="960", frameRate="60", backgroundColor="#cccccc")]
 	public class Main extends Sprite 
 	{
+		public var _starling:Starling;
 		
 		public function Main():void 
-		{
+		{	
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
-			stage.addEventListener(Event.DEACTIVATE, deactivate);
 			
 			// touch or gesture?
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
-			PageManager.initTransitions();
-			
-			// entry point
-			
-			// new to AIR? please read *carefully* the readme.txt files!
-		}
-		
-		private function deactivate(e:Event):void 
-		{
-			// make sure the app behaves well (or exits) when in background
-			//NativeApplication.nativeApplication.exit();
+			this._starling = new Starling(Init, this.stage);
+			this._starling.enableErrorChecking = false;
+			this._starling.start();
 		}
 		
 	}

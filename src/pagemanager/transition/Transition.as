@@ -4,6 +4,7 @@
     import com.greensock.easing.*;
 
 	import starling.display.Sprite;
+    import starling.core.Starling;
 
     public class Transition {
         public static var methods:Object = {
@@ -47,7 +48,7 @@
             fromRight: function(s:Sprite):Object {
                 var center:Object = this._getXYCenterFromScale(s, s.scaleX);
 
-                return this.xFromTo(s, {from: s.stage.stageWidth, to: center.x});
+                return this.xFromTo(s, {from: Starling.current.stage.stageWidth, to: center.x});
             },
             toUp: function(s:Sprite):Object {
                 return this.yFromTo(s, {from: 0, to: -s.height});
@@ -63,7 +64,7 @@
             fromDown: function(s:Sprite):Object {
                 var center:Object = this._getXYCenterFromScale(s, s.scaleY);
 
-                return this.yFromTo(s, {from: -s.stage.stageHeigh, to: center.y});
+                return this.yFromTo(s, {from: -Starling.current.stage.stageHeight, to: center.y});
             },
             scaleTo: function(s:Sprite, param:Number):Object {
                 var center:Object = this._getXYCenterFromScale(s, param);

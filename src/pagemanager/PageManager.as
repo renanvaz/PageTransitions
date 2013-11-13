@@ -25,24 +25,31 @@ package pagemanager {
             return PageManager._pages[name];
         }
 
-        public static function go (name:String, transition:Function):void {
+        public static function go (name:String):void {
             trace('PageManager: ' + name);
 
             var next:*      = PageManager.get(name),
                 cur:*       = PageManager.get(PageManager.current);
 
-            transition = transition ? transition : Transitions.default;
-
             next.visible = true;
 
             if(!PageManager._inTransition){
-                PageManager._inTransition = true;
-
-                transition(cur, next, function ():void { PageManager._inTransition = false; });
+                //PageManager._inTransition = true;
+				
+				if (cur) {
+					trace('Change', cur, next);	
+					Transition
+						.me(cur, 'toLeft', 1)
+						.me(next, 'fromRight', 1);
+				}else {
+					trace('First', next.stage);
+					Transition
+						.me(next, 'fromRight', 1);
+				}	
             }
         }
 
-        public static function initTransitions () {
+        public static function initTransitions ():void {
             // To
             TransitionCreator
                 .make('toLeft')
