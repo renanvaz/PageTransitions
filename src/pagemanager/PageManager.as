@@ -2,10 +2,10 @@ package pagemanager {
 
     import starling.core.Starling;
     import starling.display.Sprite;
-	
+
 	import pagemanager.transition.Transition;
 	import pagemanager.transition.TransitionCreator;
-	
+
 	import com.greensock.easing.*;
 
     public class PageManager {
@@ -33,19 +33,21 @@ package pagemanager {
 
             next.visible = true;
 
-            if(!PageManager._inTransition){
-                //PageManager._inTransition = true;
-				
+            if (!PageManager._inTransition) {
+                PageManager._inTransition = true;
+
 				if (cur) {
-					trace('Change', cur, next);	
 					Transition
-						.me(cur, 'toLeft', 1)
-						.me(next, 'fromRight', 1);
-				}else {
-					trace('First', next.stage);
-					Transition
-						.me(next, 'fromRight', 1);
-				}	
+						.me(cur, 'scaleToDownThenRight', 1.5)
+						.me(next, 'fromLeftThenScaleFromDown', 1.5, {delay: 1.5 * .6, onComplete: function(){ PageManager._inTransition = false; }});
+				} else {
+					next.x = 0;
+					next.y = 0;
+
+					PageManager._inTransition = false;
+				}
+
+				PageManager.current = name;
             }
         }
 
@@ -96,12 +98,12 @@ package pagemanager {
             TransitionCreator
                 .make('fadeIn')
                     .group(1, Expo.easeInOut)
-                        .add('toOpacity', 1);
+                        .add('opacityFromTo', {from: 0, to: 1});
 
             TransitionCreator
                 .make('fadeOut')
                     .group(1, Expo.easeInOut, {onComplete: function(s:Sprite):void { s.visible = false; }})
-                        .add('fromOpacity', 1);
+                        .add('opacityFromTo', {from: 1, to: 0});
 
             // Scale
             TransitionCreator

@@ -1,6 +1,7 @@
 package  
 {
-	import starling.display.Quad;
+	import flash.display.Bitmap;
+	import starling.display.Image;
 	import starling.display.Sprite;
 	import pagemanager.PageManager;
 	
@@ -13,6 +14,11 @@ package
 	 */
 	public class Init extends Sprite
 	{
+		[Embed(source='/../assets/page1.png')]
+        public static const BmPage1:Class;
+		
+		[Embed(source='/../assets/page2.png')]
+        public static const BmPage2:Class;
 		
 		public function Init() 
 		{
@@ -21,8 +27,8 @@ package
 			var p1:Sprite = new Sprite();
 			var p2:Sprite = new Sprite();
 			
-			p1.addChild(new Quad(640, 960, 0xFFFFCC));
-			p2.addChild(new Quad(640, 960, 0x0000FF));
+			p1.addChild(Image.fromBitmap(new BmPage1));
+			p2.addChild(Image.fromBitmap(new BmPage2));
 			
 			p1.addEventListener(TouchEvent.TOUCH, function(e):void{
 				var self = e.currentTarget;
